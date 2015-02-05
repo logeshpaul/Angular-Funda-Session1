@@ -1,0 +1,24 @@
+<div class="container">
+	<h3>View 1</h3>
+	<p>Name:</p>
+	<p><input type="text" ng-model="name" /> {{ name }} </p>
+
+	<div class="list">
+		<p>List of Customers</p>
+		<ul>
+			<li ng-repeat="customer in customers | filter: name | orderBy:'city'"> {{ customer.name | uppercase }} - {{ customer.city }} </li>
+		</ul>
+	</div>
+
+
+	<div class="add-customer">
+		<p>Add Customer:</p>
+		<p>Customer Name: <input type="text" data-ng-model="newCustomer.name"></p>
+		<p>Customer Name: <input type="text" data-ng-model="newCustomer.city"></p>
+		<p><button ng-click="addCustomer()">Add Customer</button></p>
+	</div>
+
+	<div class="navigate">
+		<a href="#/view2">Go to View 2</a>
+	</div>
+</div>
