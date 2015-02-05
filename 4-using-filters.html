@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app="">
+<head>
+	<meta charset="UTF-8">
+	<title>Angular Fundamental Session 1</title>
+	<style>
+	* {
+		maring: 0; padding: 0;
+	}
+	</style>
+</head>
+<body data-ng-init="customers=[ {name: 'John Paul', city: 'San Francisco'}, {name: 'Mike', city: 'New York'}, {name: 'Phil Morle', city: 'Sydney'}]">
+	<div class="container">
+		<p>Name:</p>
+		<p><input type="text" ng-model="name" /> {{ name }} </p>
+
+		<div class="list">
+			<p>List of Customers</p>
+			<ul>
+				<li ng-repeat="customer in customers | filter: name | orderBy:'city'"> {{ customer.name | uppercase }} - {{ customer.city }} </li>
+			</ul>
+		</div>
+	</div>
+
+
+	<script src="js/lib/angular.js"></script>
+</body>
+</html>

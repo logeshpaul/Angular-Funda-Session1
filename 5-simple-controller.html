@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Angular Fundamental Session 1</title>
+	<style>
+	* {
+		maring: 0; padding: 0;
+	}
+	</style>
+</head>
+<body>
+	<div class="container" ng-controller="SimpleController">
+		<p>Name:</p>
+		<p><input type="text" ng-model="name" /> {{ name }} </p>
+
+		<div class="list">
+			<p>List of Customers</p>
+			<ul>
+				<li ng-repeat="customer in customers | filter: name | orderBy:'city'"> {{ customer.name | uppercase }} - {{ customer.city }} </li>
+			</ul>
+		</div>
+	</div>
+
+
+	<script src="js/lib/angular.js"></script>
+
+	<!-- CUSTOM SCRIPT -->
+	<script src="js/main.js"></script>
+</body>
+</html>
