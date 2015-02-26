@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Angular Fundamental Session 1</title>
+	<style>
+	* {
+		maring: 0; padding: 0;
+	}
+	</style>
+</head>
+<body>
+	<div ng-view=""></div>
+	<!-- You can use <ng-view> tag also -->
+
+	<script src="js/lib/angular.js"></script>
+	<script src="js/lib/angular-route.min.js"></script>
+
+	<script>
+
+	var myApp = angular.module('myApp', ['ngRoute']);
+
+	myApp.config(function($routeProvider) {
+		$routeProvider
+			.when('/',
+				{
+					controller: 'SimpleController',
+					templateUrl: 'Partials/view1.html'
+				})
+			.when('/view2',
+				{
+					controller: 'SimpleController',
+					templateUrl: 'Partials/view2.html'
+				})
+			.otherwise({ redirectTo: '/' });
+	});
+
+	myApp.factory('simpleFactory', function() { //$http
+		var customers= [
+			{ name: 'John Paul', city: 'San Francisco' },
+			{ name: 'Mike', city: 'New York' },
+			{ name: 'Phil Morle', city: 'Sydney' }
+		];
+		var factory = {};
+		factory.getCustomers = function() {
+			return customers;
+		};
+		// POST
+		/*factory.postCustomers = function(customer) {
+			// post functionality
+		}*/
+		return factory;
+	});
+
+	myApp.controller('SimpleController', ['$scope', 'simpleFactory', function($scope, simpleFactory)  {
+		$scope.customers = [];
+
+		init();
+
+		function init() {
+			$scope.customers = simpleFactory.getCustomers();
+		}
+
+		$scope.addCustomer = function() {
+			$scope.customers.push(
+				{
+					name: $scope.newCustomer.name,
+					city: $scope.newCustomer.city
+				}
+			);
+		};
+	}]);
+
+	</script>
+</body>
+</html>

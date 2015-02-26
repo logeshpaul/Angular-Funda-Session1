@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="sampleConstant">
+<head>
+	<meta charset="UTF-8">
+	<title>Angular Fundamental Session 1</title>
+	<style>
+	* {
+		maring: 0; padding: 0;
+	}
+	</style>
+</head>
+<body ng-controller="MainCtrl">
+	Jelly Bean {{jellyBean}}!
+
+	<script src="js/lib/angular.js"></script>
+	<script src="js/lib/angular-route.min.js"></script>
+
+	<script>
+
+	var app = angular.module('sampleConstant', []);
+
+	app.constant('jellyBean', 4.2);
+	app.controller('MainCtrl', function($scope, jellyBean) {
+	  $scope.jellyBean = jellyBean;
+	});
+	app.config(function(jellyBean) {
+	  // Will run as constant provided name can be injected into a configuration
+	  alert('Configured: ' + jellyBean);
+	});
+
+	</script>
+</body>
+</html>

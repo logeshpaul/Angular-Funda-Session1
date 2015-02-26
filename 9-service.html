@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="sampleService">
+<head>
+	<meta charset="UTF-8">
+	<title>Angular Fundamental Session 1</title>
+	<style>
+	* {
+		maring: 0; padding: 0;
+	}
+	</style>
+</head>
+<body ng-controller="MainCtrl">
+	<span ng-controller="MainCtrl">
+	    Hello {{cnt}}, {{foo.cnt}}!
+	    <button class="btn btn-small btn-primary" ng-click="inc()"><i class="icon-plus icon-white"></i>1</button>
+	 </span>
+	 <span ng-controller="TangentCtrl">
+	    <button class="btn btn-large btn-success" ng-click="jump()"><i class="icon-plus icon-white"></i>5</button>
+	 </span>
+
+	<script src="js/lib/angular.js"></script>
+	<script src="js/lib/angular-route.min.js"></script>
+
+	<script>
+
+	var app = angular.module('sampleService', []);
+
+	app.value('cnt', 7);
+	app.service('foo', function(cnt) {
+	  this.cnt = ++cnt;
+	  this.inc = function(quan) {
+	    this.cnt += quan;
+	  };
+	});
+	app.controller('MainCtrl', function($scope, cnt, foo) {
+	  $scope.cnt = cnt;
+	  $scope.foo = foo;
+	  $scope.inc = function() {
+	    $scope.foo.inc(1);
+	  };
+	});
+	app.controller('TangentCtrl', function($scope, foo) {
+	  $scope.jump = function() {
+	    foo.inc(5);
+	  };
+	});
+
+	</script>
+</body>
+</html>
